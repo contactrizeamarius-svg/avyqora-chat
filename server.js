@@ -25,7 +25,7 @@ Comportament:
 - Răspunsuri scurte și clare, maxim 3-4 propoziții
 - Redirecționează întrebările complexe către echipa AVYQORA`;
 
-app.use(cors({ origin: ['https://avyqora.ro', 'https://www.avyqora.ro', 'http://localhost:3000'] }));
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 
 app.post('/api/chat', async (req, res) => {
@@ -59,4 +59,5 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
-app.listen(3001, () => console.log('AVYQORA AI Chat server pornit pe portul 3001'));
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`AVYQORA server pornit pe portul ${PORT}`));
