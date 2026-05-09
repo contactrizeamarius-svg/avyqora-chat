@@ -51,7 +51,10 @@ app.post('/api/chat', async (req, res) => {
     });
 
     const data = await response.json();
-    if (data.error) return res.status(500).json({ error: data.error.message });
+    if (data.error) {
+  console.error('Anthropic error:', JSON.stringify(data.error));
+  return res.status(500).json({ error: data.error.message });
+}
     res.json({ reply: data.content?.[0]?.text || 'Eroare la generarea răspunsului.' });
   } catch (err) {
     console.error('Eroare server:', err);
